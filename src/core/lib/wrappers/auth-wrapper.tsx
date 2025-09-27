@@ -12,7 +12,7 @@ export const AuthWrapper: FC<TAuthWrapper> = (props) => {
   const { children } = props;
   const { data: user, isLoading, error } = useSWR(EndPoints.getUser);
 
-  if (isLoading) return <AppSpinner />;
+  if (isLoading) return <div className="h-screen w-full flex justify-center items-center"><AppSpinner /></div>;
 
   // login page
   if (error || !user) return <>{children}</>;
@@ -21,7 +21,7 @@ export const AuthWrapper: FC<TAuthWrapper> = (props) => {
     return (
       // conditional redirection to dashboard or on board.
       <div>
-        <p>User found</p>
+        <p>User found, redirect</p>
       </div>
     );
   }

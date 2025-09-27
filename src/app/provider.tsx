@@ -12,12 +12,12 @@ export interface IAppProvider {
 export const AppProvider: FC<IAppProvider> = (props) => {
   const { children } = props;
   return (
-    // <ProgressProvider
-    //   height="4px"
-    //   color="rgb(var(--color-primary-100))"
-    //   options={{ showSpinner: false }}
-    //   shallowRouting
-    // >
+    <ProgressProvider
+      height="4px"
+      color="rgb(var(--color-primary-100))"
+      options={{ showSpinner: false }}
+      shallowRouting
+    >
       <SWRConfig
         value={{
           fetcher,
@@ -27,6 +27,6 @@ export const AppProvider: FC<IAppProvider> = (props) => {
       >
         {children}
       </SWRConfig>
-    // </ProgressProvider>
+    </ProgressProvider>
   );
 };

@@ -2,7 +2,7 @@
 
 function Error() {
   return <div className="container">
-    Error Occured
+    global error catch : Error Occured
   </div>;
 }
 
