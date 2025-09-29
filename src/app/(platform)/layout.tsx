@@ -1,5 +1,5 @@
-import { Metadata, Viewport } from "next";
 
+import { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   robots: {
@@ -20,5 +20,7 @@ export default function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return (
+    <div>{children}</div>
+  );
 }

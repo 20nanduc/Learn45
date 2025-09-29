@@ -24,14 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  className="dark">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="w-full overflow-x-hidden">
           <AppProvider>{children}</AppProvider>
         </main>
-        <div id="context-menu-portal" />
+        <div id="portal-root"></div>
       </body>
     </html>
   );
