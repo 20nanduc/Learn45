@@ -1,0 +1,3 @@
+export const X_CLIENT_PLATFORM = "WEB";
+export const ATTEMPT_TOKEN_STORAGE_KEY = "ATTEMPT_TOKEN";
+export const EMAIL_STORAGE_KEY = "EMAIL";

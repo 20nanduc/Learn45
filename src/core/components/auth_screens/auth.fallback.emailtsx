@@ -1,0 +1,8 @@
+import React from "react";
+
+function AuthFallbackEmail() {
+  const authLink = useAuth
+  return <div>email not found</div>;
+}
+
+export default AuthFallbackEmail;

@@ -1,6 +1,6 @@
 "use client";
 
-import { globalFetcher } from "./actions/root.action";
+import { globalFetcher } from "./server-actions/root.action";
 
 export const fetcher = async (url: string) => {
   const data = await globalFetcher(url);

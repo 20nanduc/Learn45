@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import useSWR from "swr";
-import * as EndPoints from "@/core/constants/endpoints";
+import * as EndPoints from "@/core/constants/swr-key";
 import AppSpinner from "@/core/components/spinner/app_spinner";
 
 type TAuthWrapper = {
