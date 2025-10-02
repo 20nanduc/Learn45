@@ -22,10 +22,9 @@ export const AppProvider: FC<IAppProvider> = (props) => {
         value={{
           fetcher,
           revalidateOnFocus: false,
-          revalidateOnMount: false,
-          revalidateIfStale: false,
           revalidateOnReconnect: false,
-          errorRetryCount: 2,
+          revalidateIfStale: false,
+          errorRetryCount: 0,
         }}
       >
         {children}

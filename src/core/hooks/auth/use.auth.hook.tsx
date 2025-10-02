@@ -1,15 +1,22 @@
+"use client";
+
 import { getFingerprint } from "@/core/lib/fingerprint";
 import { isValidEmail } from "@/core/utils/auth";
 import { useState } from "react";
 import { EAuthHeader } from "@/helpers/auth";
 import { getErrorMessage } from "@/core/utils/error";
-import { requestMagicLink } from "@/core/services/server-actions/auth/magic.signin.service";
+import { completeMagicLinkSignin, requestMagicLink } from "@/core/services/server-actions/auth/magic.signin.service";
 import { IGetMagicLinkResponse, TApiResult } from "@/core/types/auth.types";
-import { cacheUserLoginAttempt } from "@/core/store/local.store";
-import { sendMagicLink } from "./firebase.auth";
+import { cacheUserLoginAttempt, getCachedUserLoginAttempt } from "@/core/store/local.store";
+import { sendMagicLink } from "../../lib/firebase/firebase.auth";
+import { SESSION_EXIST_STATUS_CODE } from "@/core/constants";
+import { useAppRouter } from "../use.app.router";
 
 
 export const useAuth = () => {
+
+  const router = useAppRouter();
+
   const [authStep, setAuthStep] = useState<EAuthHeader>(
     EAuthHeader.NOT_STARTED
   );
@@ -21,20 +28,49 @@ export const useAuth = () => {
   const switchToLinkVerificationPage = () =>
     setAuthStep(EAuthHeader.MAGIC_LINK_AUTH);
 
-  const registerUser = async () => {
-    console.log("email", email);
+  const signInWithMagicLink = async (forcedLogin: boolean = false) => {
+    try {
+
+      setIsLoading(true);
+      setError('');
+
+      //replace with cookies later
+      const cachedEmailAndToken = getCachedUserLoginAttempt();
+      if (!cachedEmailAndToken) throw new Error('Device denied to access saved information.');
+
+      const { email, attemptToken } = cachedEmailAndToken;
+      const deviceId = await getFingerprint();
+
+      const res = await completeMagicLinkSignin({ email, attemptToken, forcedLogin, deviceId });
+
+      if (res && res?.status === SESSION_EXIST_STATUS_CODE) {
+        setLogoutWarning(true);
+        throw new Error(res?.error || "Found Existing login. Logout to continue");
+      }
+
+      if (!res || !res?.success) throw new Error(res?.error || "Error... Unable to login, try again!.");
+
+      router.replace('/user');
+
+    } catch (err: unknown) {
+      setError(getErrorMessage(err));
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+
 
   const getMagicLink = async (email: string) => {
     try {
       setIsLoading(true);
       setError("");
-      const device_id = await getFingerprint();
+      const deviceId = await getFingerprint();
       if (!isValidEmail(email)) throw new Error("Invalid Email");
 
       const response = await requestMagicLink({
         email,
-        device_id,
+        deviceId,
       });
 
       const magicLinkData = response.success ? response.data : null;
@@ -50,7 +86,7 @@ export const useAuth = () => {
 
       cacheUserLoginAttempt({
         email,
-        attempt_token: magicLinkData?.attempt_token,
+        attemptToken: magicLinkData?.attempt_token,
       });
       switchToLinkVerificationPage();
     } catch (err: unknown) {
@@ -68,7 +104,7 @@ export const useAuth = () => {
     setEmail,
     isLoading,
     showLogoutWarning,
-    registerUser,
+    signInWithMagicLink,
     getMagicLink,
   };
 };

@@ -1,3 +1,8 @@
 export const X_CLIENT_PLATFORM = "WEB";
 export const ATTEMPT_TOKEN_STORAGE_KEY = "ATTEMPT_TOKEN";
 export const EMAIL_STORAGE_KEY = "EMAIL";
+export const ATTEMPT_TOKEN_QUERY_PARAM_KEY = "attempt-token";
+
+export const COOKIE_SESSION_KEY = 'SESSION_COOKIE';
+
+export const SESSION_EXIST_STATUS_CODE = 409;

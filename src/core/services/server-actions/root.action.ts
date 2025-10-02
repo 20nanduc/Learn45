@@ -1,28 +1,26 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { COOKIE_SESSION_KEY } from "@/core/constants";
+import { getBrowserCookie } from "@/core/utils/cookie";
 
 const X_CLIENT_PLATFORM = "WEB";
 
-export const globalFetcher= async (url: string) => {
+export const globalFetcher = async (url: string) => {
 
-  const cookie_store = cookies();
-  const session_cookie = (await cookie_store).get("SESSION");
+  const storedCookie = await getBrowserCookie();
 
-  if (!session_cookie) throw new Error("Authentication cookie not found.");
-  
+  if (!storedCookie) throw new Error("User session ended!!.")
 
   const response = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "X-Client-Platform": `${X_CLIENT_PLATFORM}`,
-      Cookie: `SESSION=${session_cookie.value}`,
+      "X-Client-Platform": "WEB",
+      Cookie: `SESSION_COOKIE=${storedCookie}`
     },
-    cache: "default",
   });
 
   if (!response.ok) throw new Error(`status: ${response.status}`);
-  const data = await response.json();
-  return { data };
+  const userData = (await response.json())?.data;
+  return userData;
 };

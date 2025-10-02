@@ -1,3 +1,4 @@
+"use client";
 import { EAuthHeader } from "@/helpers/auth";
 
 interface IAuthHeader {

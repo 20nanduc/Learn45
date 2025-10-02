@@ -1,30 +1,45 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useSWR from "swr";
 import * as EndPoints from "@/core/constants/swr-key";
 import AppSpinner from "@/core/components/spinner/app_spinner";
+import { useAppRouter } from "@/core/hooks/use.app.router";
 
 type TAuthWrapper = {
   children: React.ReactNode;
 };
 
-export const AuthWrapper: FC<TAuthWrapper> = (props) => {
-  const { children } = props;
+export const AuthWrapper: FC<TAuthWrapper> = ({ children }) => {
+  const router = useAppRouter();
   const { data: user, isLoading, error } = useSWR(EndPoints.getUser);
 
-  if (isLoading) return <div className="h-screen w-full flex justify-center items-center"><AppSpinner /></div>;
+  console.log("user", user);
 
-  // login page
-  if (error || !user) return <>{children}</>;
+  // redirect once user is loaded
+  useEffect(() => {
+    if (user?.id) {
+      if (user.new_user) {
+        router.replace("/create-account");
+      } else {
+        router.replace("/user");
+      }
+    }
+  }, [user, router]);
 
-  if (user) {
+  // loading spinner
+  if (isLoading) {
     return (
-      // conditional redirection to dashboard or on board.
-      <div>
-        <p>User found, redirect</p>
+      <div className="h-screen w-full flex justify-center items-center">
+        <AppSpinner />
       </div>
     );
   }
 
+  // not logged in → show login page
+  if (error || !user) {
+    return <>{children}</>;
+  }
+
+  // prevent flashing children while redirecting
   return null;
 };

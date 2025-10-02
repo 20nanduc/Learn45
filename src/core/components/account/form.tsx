@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2Icon, SaveIcon, UserIcon } from "lucide-react";
 import React, { useState } from "react";
+import useSWR from "swr";
+import * as EndPoints from "@/core/constants/swr-key";
 
 //used for both edit/create
 function AccountForm() {
+  const { data: user, isLoading: loadingSwr } = useSWR(EndPoints.getUser);
   const [userName, setUserName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -20,6 +23,7 @@ function AccountForm() {
         <div className="relative">
           <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
+            suppressHydrationWarning
             type="username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
@@ -28,6 +32,7 @@ function AccountForm() {
             required
             disabled={isLoading}
             aria-invalid={!!error}
+            autoComplete="off"
           />
         </div>
         {error && <p className="text-xs text-red-600 mt-1 ml-1">{error}</p>}

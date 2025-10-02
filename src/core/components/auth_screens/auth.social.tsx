@@ -1,4 +1,4 @@
-
+"use client";
 
 const AuthSocialLink = () => {
     return <div> social sign in</div>

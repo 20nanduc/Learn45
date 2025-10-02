@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "postcss.config.js", "tsconfig", "src/core/components/auth_screens/auth.fallback.emailtsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "postcss.config.js", "tsconfig", "src/core/components/auth_screens/auth.fallback.email.tsx"],
   "exclude": ["node_modules", "postcss.config.js"]
 }
