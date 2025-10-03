@@ -1,20 +1,25 @@
 "use client";
 
-import { getFingerprint } from "@/core/lib/fingerprint";
+import { getFingerprint } from "@/core/lib/fingerprintjs";
 import { isValidEmail } from "@/core/utils/auth";
 import { useState } from "react";
 import { EAuthHeader } from "@/helpers/auth";
 import { getErrorMessage } from "@/core/utils/error";
-import { completeMagicLinkSignin, requestMagicLink } from "@/core/services/server-actions/auth/magic.signin.service";
-import { IGetMagicLinkResponse, TApiResult } from "@/core/types/auth.types";
-import { cacheUserLoginAttempt, getCachedUserLoginAttempt } from "@/core/store/local.store";
+import {
+  completeMagicLinkSignin,
+  requestMagicLink,
+} from "@/core/services/server-actions/auth/magic.signin.service";
+import {
+  cacheUserLoginAttempt,
+  getCachedUserLoginAttempt,
+} from "@/core/store/local.store";
 import { sendMagicLink } from "../../lib/firebase/firebase.auth";
 import { SESSION_EXIST_STATUS_CODE } from "@/core/constants";
 import { useAppRouter } from "../use.app.router";
-
+import { mutate } from "swr";
+import * as EndPoints from "@/core/constants/swr-key";
 
 export const useAuth = () => {
-
   const router = useAppRouter();
 
   const [authStep, setAuthStep] = useState<EAuthHeader>(
@@ -30,36 +35,48 @@ export const useAuth = () => {
 
   const signInWithMagicLink = async (forcedLogin: boolean = false) => {
     try {
-
       setIsLoading(true);
-      setError('');
+      setError("");
 
       //replace with cookies later
       const cachedEmailAndToken = getCachedUserLoginAttempt();
-      if (!cachedEmailAndToken) throw new Error('Device denied to access saved information.');
+      if (!cachedEmailAndToken)
+        throw new Error("Device denied to access saved information.");
 
       const { email, attemptToken } = cachedEmailAndToken;
       const deviceId = await getFingerprint();
 
-      const res = await completeMagicLinkSignin({ email, attemptToken, forcedLogin, deviceId });
+      const res = await completeMagicLinkSignin({
+        email,
+        attemptToken,
+        forcedLogin,
+        deviceId,
+      });
 
       if (res && res?.status === SESSION_EXIST_STATUS_CODE) {
         setLogoutWarning(true);
-        throw new Error(res?.error || "Found Existing login. Logout to continue");
+        throw new Error(
+          res?.error || "Found Existing login. Logout to continue"
+        );
       }
 
-      if (!res || !res?.success) throw new Error(res?.error || "Error... Unable to login, try again!.");
+      if (!res || !res?.success)
+        throw new Error(res?.error || "Error... Unable to login, try again!.");
 
-      router.replace('/user');
-
+      await mutate(EndPoints.getUser, { revalidate: true });
+      
+      if (res.data?.newUser) {
+        router.push("/create-account");
+        return;
+      }
+      router.push("/user");
+      return;
     } catch (err: unknown) {
       setError(getErrorMessage(err));
     } finally {
       setIsLoading(false);
     }
   };
-
-
 
   const getMagicLink = async (email: string) => {
     try {

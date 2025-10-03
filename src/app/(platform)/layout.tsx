@@ -1,4 +1,3 @@
-
 import { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
@@ -20,7 +19,5 @@ export default function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>{children}</div>
-  );
+  return <>{children}</>;
 }

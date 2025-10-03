@@ -6,10 +6,7 @@ export default function CreateAccountPage() {
   return (
     <AuthWrapper>
       <div className="min-h-screen flex gap-6 flex-col justify-center items-center">
-        <FormHeader
-          title="You Will Never Miss."
-          subTitle="Introduce Yourself with us."
-        />
+        <FormHeader title="Tell about yourself." subTitle="" />
         <AccountForm />
       </div>
     </AuthWrapper>
