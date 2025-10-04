@@ -22,3 +22,31 @@ export const isValidURL = (url: string): boolean => {
   }
 };
 
+
+export const validateUsername = (
+  username: string,
+): boolean => {
+
+  const minLength = 3;
+  const maxLength = 30;
+
+  // 1. Check for Minimum Length
+  if (username.length < minLength) {
+    throw new Error(`Username must be at least ${minLength} characters long. Found ${username.length}.`);
+  }
+
+  // 2. Check for Maximum Length
+  if (username.length > maxLength) {
+    throw new Error(`Username cannot exceed ${maxLength} characters. Found ${username.length}.`);
+  }
+
+  // 3. (Optional but good practice): Check for unwanted characters
+  // Example: Only allow letters, numbers, hyphens, and underscores
+  const validPattern = /^[a-zA-Z0-9_-]+$/;
+  if (!validPattern.test(username)) {
+    throw new Error("Username contains invalid characters. Only letters, numbers, hyphens, and underscores are allowed.");
+  }
+
+  // If all checks pass
+  return true;
+}

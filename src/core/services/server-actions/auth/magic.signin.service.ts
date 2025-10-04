@@ -26,9 +26,6 @@ export async function requestMagicLink({
       body: JSON.stringify({ email, device_id: deviceId }),
     });
 
-    console.log("request MagicLink res", res);
-
-
     const data = (await res.json())?.data;
 
     if (!res.ok) {

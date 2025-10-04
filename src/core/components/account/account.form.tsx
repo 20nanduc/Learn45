@@ -1,20 +1,19 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2Icon, SaveIcon, UserIcon } from "lucide-react";
-import React, { useState } from "react";
-import useSWR from "swr";
-import * as EndPoints from "@/core/constants/swr-key";
+
 import InputFieldSkeleton from "../skeletons/input";
 import useAccount from "@/core/hooks/auth/use.account.hook";
 
 //used for both edit/create
 function AccountForm() {
-  const { loadingUser, userName, setUserName, error, isLoading } = useAccount();
+  const { loadingUser, userName, setUserName, error, isLoading, updateAccount } = useAccount();
 
   return (
     <div className="flex flex-col justify-center items-center max-w-2xl">
-      <div className="space-y-2 w-full">
+      <div className="space-y-2 max-w-2xs sm:max-w-2xl">
         <p className="text-xs text-muted-foreground">Enter Your user name.</p>
         <div className="relative">
           <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -41,7 +40,8 @@ function AccountForm() {
           variant={"default"}
           size={"lg"}
           className="w-full mt-2"
-          type="submit"
+          type="button"
+          onClick={() => updateAccount()}
           disabled={isLoading || !userName.trim()}
         >
           {isLoading ? (

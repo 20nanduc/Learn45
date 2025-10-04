@@ -1,5 +1,5 @@
-import AccountForm from "@/core/components/account/form";
-import FormHeader from "@/core/components/account/form.header";
+import AccountForm from "@/core/components/account/account.form";
+import FormHeader from "@/core/components/account/account.header";
 import { AuthWrapper } from "@/core/lib/wrappers/auth-wrapper";
 
 export default function CreateAccountPage() {

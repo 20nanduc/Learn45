@@ -45,8 +45,6 @@ function useAuthMagicLink() {
         setIsSuccess(true);
         setIsEmailFound(true);
 
-        console.log("user link verified.");
-
       } catch (err: unknown) {
         setError(getErrorMessage(err));
       } finally {

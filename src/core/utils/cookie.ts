@@ -48,8 +48,3 @@ export const getBrowserCookie = async () => {
 
 
 
-export const clearBrowserCookie = () => {
-
-}
-
-
