@@ -15,8 +15,8 @@ function Appbar() {
           <button className="sm:hidden" onClick={() => setOpen(true)}>
             <MenuIcon className="w-6 h-6" />
           </button>
-          
-          <h4 className="font-semibold">AppName</h4>
+
+          <h4 className="font-semibold">Learn45</h4>
         </div>
 
         <User2Icon />

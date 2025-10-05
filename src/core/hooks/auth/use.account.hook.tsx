@@ -29,7 +29,7 @@ function useAccount() {
 
       if (!res || !res.success) throw new Error(res?.error || "Error... Failed to update name!!.")
 
-      router.replace('/user');
+      router.replace('/home');
 
     } catch (err: unknown) {
       setError(getErrorMessage(err));

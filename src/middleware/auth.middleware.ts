@@ -13,7 +13,10 @@ export function handleProtectedPageVisit(
 
   if (!token) {
     const url = new URL("/", req.url);
-    if (pathname.startsWith("/user")) {
+    if (pathname.startsWith("/home")) {
+      return NextResponse.redirect(url);
+    }
+     if (pathname.startsWith("/learn")) {
       return NextResponse.redirect(url);
     }
     if (pathname.startsWith("/create-account")) {

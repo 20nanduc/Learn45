@@ -32,7 +32,7 @@ export default function SidebarItem({
           : "text-gray-600 hover:text-black hover:bg-gray-100 dark:hover:bg-gray-800"
       )}
     >
-      <Icon className="w-6 h-6" />
+      <Icon className="w-5 h-5" />
       <span className="text-xs">{name}</span>
     </Link>
   );

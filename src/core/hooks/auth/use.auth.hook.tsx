@@ -69,7 +69,7 @@ export const useAuth = () => {
         router.push("/create-account");
         return;
       }
-      router.push("/user");
+      router.push("/home");
       return;
     } catch (err: unknown) {
       setError(getErrorMessage(err));

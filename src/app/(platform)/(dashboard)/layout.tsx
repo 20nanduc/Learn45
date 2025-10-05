@@ -28,7 +28,7 @@ export default function HomeLayout({
       </aside>
       <main className="flex-1 h-screen transform transition-transform duration-300 ease-in flex flex-col sm:ml-20">
           <Appbar />
-        <div className="flex-1 p-6 mt-14 sm:0">{children}</div>
+        <div className="flex-1 p-6 mt-14 overflow-y-scroll sm:0">{children}</div>
       </main>
     </div>
   );
