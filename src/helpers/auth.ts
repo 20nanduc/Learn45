@@ -2,6 +2,7 @@
 export enum EAuthPageType {
   PROTECTED = "PROTECTED",
   PUBLIC = "PUBLIC",
+  CREATE_ACCOUNT = "CREATE_ACCOUNT",
 }
 
 export enum EAuthHeader {

@@ -1,7 +1,6 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import useSWR from "swr";
-// Assuming these imports are correct based on your project structure
 import * as EndPoints from "@/core/constants/swr-key";
 import AppSpinner from "@/core/components/spinner/app_spinner";
 import { useAppRouter } from "@/core/hooks/use.app.router";
@@ -9,7 +8,6 @@ import { useSearchParams, usePathname } from "next/navigation";
 import { EAuthPageType, isValidURL } from "@/helpers/auth";
 
 type TAuthWrapper = {
-  /** Defines the access type: PROTECTED (requires login) or PUBLIC (doesn't require login). */
   pageType?: EAuthPageType;
   children: React.ReactNode;
 };
@@ -27,31 +25,82 @@ export const AuthWrapper: FC<TAuthWrapper> = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useAppRouter();
+
   const nextPath = searchParams.get("next_path");
 
+  const { data: currentUser, isLoading } = useSWR(EndPoints.getUser, {
+    revalidateOnFocus: false,
+    shouldRetryOnError: false,
+  });
 
-  const { data: currentUser, isLoading } = useSWR(EndPoints.getUser);
+  const isUserOnboard = currentUser ? !currentUser.new_user : false;
 
-  const redirectUser = () => {
-    const redirectTo = currentUser?.new_user ? '/create-account' : '/home';
-    router.push(redirectTo);
-    return null;
-  }  
+  const getRedirectionUrl = () => {
+    if (nextPath && isValidURL(nextPath.toString())) {
+      return nextPath.toString();
+    }
+    return "/home";
+  };
 
-  // 1. Always show the spinner while data is being fetched.
-  if (isLoading) {
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    // Handle CREATE_ACCOUNT route
+    if (pageType === EAuthPageType.CREATE_ACCOUNT) {
+      if (!currentUser?.id) {
+        router.push("/");
+        return;
+      }
+      if (currentUser?.id && isUserOnboard) {
+        router.push(getRedirectionUrl());
+        return;
+      }
+    }
+
+    // Handle PROTECTED route
+    if (pageType === EAuthPageType.PROTECTED) {
+      if (!currentUser?.id) {
+        router.push(`/${pathname ? `?next_path=${pathname}` : ``}`);
+        return;
+      }
+      if (currentUser?.id && !isUserOnboard) {
+        router.push("/create-account");
+        return;
+      }
+    }
+
+    // Handle PUBLIC route
+    if (pageType === EAuthPageType.PUBLIC) {
+      if (currentUser?.id && isUserOnboard) {
+        router.push(getRedirectionUrl());
+        return;
+      }
+      if (currentUser?.id && !isUserOnboard) {
+        router.push("/create-account");
+        return;
+      }
+    }
+  }, [isLoading, currentUser, pageType, pathname, nextPath]);
+
+
+  if (isLoading && !currentUser?.id) {
     return <FullScreenSpinner />;
   }
 
 
-  if (pageType == EAuthPageType.PROTECTED) {
-
+  if (!isLoading && pageType === EAuthPageType.CREATE_ACCOUNT) {
+    if (!currentUser?.id || (currentUser?.id && isUserOnboard)) return <></>;
   }
 
-  if (pageType == EAuthPageType.PUBLIC) {
-    if (!currentUser) return <>{children}</>
-    redirectUser()
+  if (!isLoading && pageType === EAuthPageType.PROTECTED) {
+    if (!currentUser?.id || (currentUser?.id && !isUserOnboard)) return <></>;
+  }
+
+  if (!isLoading && pageType === EAuthPageType.PUBLIC) {
+    if (currentUser?.id) return <></>;
   }
 
 
+  return <>{children}</>;
 };

@@ -29,6 +29,7 @@ function useAccount() {
 
       if (!res || !res.success) throw new Error(res?.error || "Error... Failed to update name!!.")
 
+      await mutate(EndPoints.getUser, { revalidate: true });
       router.replace('/home');
 
     } catch (err: unknown) {
