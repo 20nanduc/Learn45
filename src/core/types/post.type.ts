@@ -1,19 +1,23 @@
 
+
+
 export interface IPost {
-  post_id: number;
-  title: string;
-  author: string;
-  summary: string;
-  read_time: string;
+  id: string;
+  author_id: string;
+  category_id: string;
+  description: string,
+  duration: number,
+  created_at: string,
+  published_at: string,
+  slug: string,
+  thumbnail_url: string,
+  title: string,
+  content_list: string[],
 }
 
-export interface IPagination {
-  totalCount: number;
-  nextOffset: number;
+export type TPaginatedResponse = {
+  posts: IPost[];
+  lastPost: string | null;
   hasMore: boolean;
 }
 
-export interface IPostsListResponse {
-  data: IPost[];
-  pagination: IPagination;
-}
