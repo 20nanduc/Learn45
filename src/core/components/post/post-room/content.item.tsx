@@ -15,7 +15,7 @@ function ContentItem(props: IContentItem) {
 
     return (
         <Card
-            className="w-full p-4 flex flex-col gap-2 rounded-lg shadow-md md:flex-row md:items-center md:justify-between transition-transform duration-200 hover:scale-[1.01]"
+            className="w-full p-4 flex mb-3 flex-col gap-2 rounded-lg shadow-md md:flex-row md:items-center md:justify-between transition-transform duration-200 hover:scale-[1.01]"
         >
             <div
                 className="flex flex-row items-center gap-3 min-w-0 flex-1 cursor-pointer"

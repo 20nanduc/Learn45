@@ -35,10 +35,7 @@ function PostList() {
                 return (
                     <div className="flex flex-col gap-1  justify-center items-center py-5 text-gray-500" >
                         <p className="text-xs text-center w-full ">Our content creators working for more.</p>
-                        <p className="text-base text-gray-500 text-center mt-10">
-                            Made with <span className="text-red-500">&hearts;</span> by the Learn45 Team. All rights reserved.
-                        </p>
-                        <p>&copy;2025 Learn45.com</p>
+                        
                     </div>
                 );
             }
