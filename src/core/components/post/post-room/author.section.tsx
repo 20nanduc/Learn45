@@ -1,15 +1,23 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { IPostView } from "@/core/types/post.type";
 import { UserIcon } from "lucide-react";
 
-function PostAuthor() {
+interface IPostAuthor {
+    post: IPostView
+}
+
+function PostAuthor(props: IPostAuthor) {
+
+    const { post } = props;
+
     return (
-        <div className="w-screen px-5 py-5 flex flex-col gap-2 items-center justify-center md:flex-row md:px-10 ">
+        <div className="w-screen px-5 py-5 flex flex-col gap-2 items-center justify-center md:flex-row">
             <h5 className="text-xs text-muted-foreground">Authered by:</h5>
-            <Avatar className="w-13 h-13">
+            <Avatar className="w-16 h-16">
                 <AvatarImage
-                    src={"https://cdn.learn45.com/thumbnails/posts/740ad60c-df9d-4375-b9f9-94786a5260dd/thumbnail.jpg"}
+                    src={post?.tutor_avatar_url}
                     loading="lazy"
                     className="w-full h-full object-cover object-center"
                 />
@@ -18,9 +26,9 @@ function PostAuthor() {
                 </AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
-                <h5 className="text-sm font-semibold">Sachin Dev</h5>
+                <h5 className="text-sm font-semibold uppercase">{post.tutor_name}</h5>
                 <h5 className="text-xs text-muted-foreground">
-                    Software Specialist
+                    {post?.tutor_profession}
                 </h5>
             </div>
         </div>
