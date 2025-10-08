@@ -23,7 +23,7 @@ export type TPaginatedResponse = {
 };
 
 
-export interface IPostMaterialView {
+export interface IPostLessonView {
   slug: string,
   title: string,
   duration: number
@@ -43,6 +43,6 @@ export interface IPostView {
   tutor_avatar_url: string,
   tutor_bio: string,
   post_content_list: string[],
-  articles: IPostMaterialView[]
+  articles: IPostLessonView[]
 };
 
