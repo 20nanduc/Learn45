@@ -11,13 +11,13 @@ function Root() {
     const { post, isLoading, error } = usePostHook()
 
 
-    if (isLoading) return <AppSpinner />
+    if (isLoading) return <div className="h-screen w-full flex justify-center items-center"><AppSpinner /></div>
 
-    if (error) return <h3>Post Not Found!.</h3>
+    if (error) return <div className="h-screen w-full flex justify-center items-center"><h3 className="text-lg text-center">Post Not Found!.</h3> </div>
 
     if (post) {
         return (
-            <div className="flex flex-col  gap-3 justify-center items-center">
+            <div className="flex flex-col gap-3 justify-center items-center">
                 <PostHeader post={post} />
                 <PostAuthor post={post} />
                 <PostContentRoot materials={post?.articles} />

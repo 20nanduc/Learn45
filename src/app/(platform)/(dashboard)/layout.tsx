@@ -26,10 +26,10 @@ export default function HomeLayout({
       <aside className="hidden transform transition-transform duration-300 ease-in sm:block ">
         <Sidebar />
       </aside>
-      <main className="flex-1 h-screen transform transition-transform duration-300 ease-in flex flex-col sm:ml-21">
+      <main className="flex-1 h-screen transform transition-transform duration-300 ease-in flex flex-col sm:pl-21">
         <Appbar />
-        <div className="w-full flex-1 mt-14 overflow-y-scroll">
-          <div className="container">
+        <div className="w-full flex-1 pt-16 overflow-y-scroll">
+          <div className="container mx-auto">
             {children}
           </div>
         </div>

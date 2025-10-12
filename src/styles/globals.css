@@ -3,6 +3,7 @@
 @plugin "tailwindcss-animate";
 @import "tw-animate-css";
 
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -81,7 +82,7 @@
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  --background: oklch(0.1255 0.0104 241.77);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
@@ -134,10 +135,29 @@
   }
 
 
-
   p {
-    @apply text-xs sm:text-base font-normal font-lora mt-2 mb-4;
+    @apply text-xs sm:text-base font-normal font-lora mt-4 mb-4;
   }
+
+
+  .editor-content {
+    @apply box-border;
+  }
+
+  .editor-content p {
+    @apply text-lg tracking-wide text-justify leading-loose my-4 text-gray-300;
+  }
+
+
+  .editor-content p strong {
+    @apply font-bold text-2xl;
+  }
+
+  /* If :has() is supported you can remove margins for p that *contain* a direct strong */
+  .editor-content p:has(> strong) {
+    @apply my-0 leading-snug text-white;
+  }
+
 }
 
 .scrollbar-hide::-webkit-scrollbar {

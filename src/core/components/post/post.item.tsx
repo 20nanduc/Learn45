@@ -47,18 +47,18 @@ function PostItem(props: IPostItem) {
 
                             <div className="flex flex-wrap gap-3 min-w-0">
                                 <div className="flex gap-1 min-w-0">
-                                    <WaypointsIcon className="w-4 h-4 text-[#f08121]" />
-                                    <span className="text-xs text-[#f08121] truncate">{post?.content_list.length} Materials</span>
+                                    <WaypointsIcon className="w-4 h-4 text-chart-3" />
+                                    <span className="text-xs text-chart-3 truncate">{post?.content_list.length} Materials</span>
                                 </div>
 
                                 <div className="flex gap-1 min-w-0">
-                                    <GraduationCapIcon className="w-4 h-4 text-[#f08121]" />
-                                    <span className="text-xs text-[#f08121] whitespace-nowrap">{post?.duration} {" "} Min Read</span>
+                                    <GraduationCapIcon className="w-4 h-4 text-chart-3" />
+                                    <span className="text-xs text-chart-3 whitespace-nowrap">{post?.duration} {" "} Min Read</span>
                                 </div>
 
                                 <div className="flex gap-1 min-w-0">
-                                    <Clock3Icon className="w-4 h-4 text-[#f08121]" />
-                                    <span className="text-xs text-[#f08121] whitespace-nowrap">{post?.published_at}</span>
+                                    <Clock3Icon className="w-4 h-4 text-chart-3" />
+                                    <span className="text-xs text-chart-3 whitespace-nowrap">{post?.published_at}</span>
                                 </div>
                             </div>
 

@@ -22,7 +22,7 @@ export default function PostSideCard(props: IPostSideCard) {
             <CardHeader className="flex flex-col max-h-[30vh] justify-start p-5">
 
                 {/* 2. Main Title */}
-                <h2 className="text-xl font-bold">
+                <h2 className="text-md font-bold">
                     {post.post_title}
                 </h2>
 
@@ -35,11 +35,11 @@ export default function PostSideCard(props: IPostSideCard) {
                             height={36}
                             width={36}
                         />
-                        <div className="flex flex-col gap-0.5">
-                            <h6 className="text-base leading-none font-semibold">
+                        <div className="flex flex-col gap-1">
+                            <h6 className="text-base leading-none font-semibold capitalize">
                                 {post?.tutor_name}
                             </h6>
-                            <span className="text-xs text-gray-500 font-medium">
+                            <span className="text-xs text-muted-foreground font-medium">
                                 Published <span className="text-indigo-500 font-medium">{post?.post_published_at}</span>
                             </span>
                         </div>

@@ -16,7 +16,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    function ({ addVariant }: { addVariant: (name: string, definition: string | string[]) => void }) {
+      addVariant('first-p-letter', '&:first-of-type::first-letter');
+    },
+  ],
 };
 
 export default config;

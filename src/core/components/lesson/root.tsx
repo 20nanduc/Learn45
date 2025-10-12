@@ -7,9 +7,9 @@ import RootContent from "./content/root.content";
 function LessonRoot() {
     const { lesson, isLoading, error } = useLessonHook()
 
-    if (isLoading) return <AppSpinner />
+    if (isLoading) return <div className="h-screen w-full flex justify-center items-center"><AppSpinner /></div>
 
-    if (error) return <p>Lesson Not Found!</p>
+    if (error) return <div className="h-screen w-full flex justify-center items-center"><p>Lesson Not Found!</p></div>
 
     if (lesson) {
         return (

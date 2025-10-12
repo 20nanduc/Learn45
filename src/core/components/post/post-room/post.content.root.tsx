@@ -12,7 +12,7 @@ function PostContentRoot(props: IPostContentRoot) {
   const { materials } = props;
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-5">
+    <div className="mx-auto w-full max-w-4xl p-8">
       {
         materials.map((item: IPostLessonView, index) => (
           <ContentItem key={item.slug || index} material={item} />

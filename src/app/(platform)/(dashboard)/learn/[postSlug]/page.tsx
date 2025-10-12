@@ -1,3 +1,4 @@
+import Footer from "@/core/components/footer/Footer";
 import Root from "@/core/components/post/post-room/root"
 import { AuthWrapper } from "@/core/lib/wrappers/auth-wrapper"
 import { Suspense } from "react"
@@ -9,6 +10,7 @@ function PostRoom() {
             <AuthWrapper>
                 <div className="mx-auto">
                     <Root />
+                    <Footer/>
                 </div>
             </AuthWrapper>
         </Suspense>

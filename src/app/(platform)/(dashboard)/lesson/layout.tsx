@@ -23,11 +23,10 @@ export default function LessonLayout({ children }: { children: React.ReactNode }
         <div className="h-[calc(100vh-3rem)] flex overflow-hidden">
             <main className="flex-1 overflow-y-auto scrollbar-hide pb-10 transform transition-transform duration-300 ease-in flex flex-col">
                 {
-                    lessonLoading ? <AppSpinner /> : <div className="flex-1">{children}</div>
+                    lessonLoading ? <div className="h-screen w-full flex justify-center items-center"><AppSpinner /></div> : <div className="flex-1">{children}</div>
                 }
             </main>
-            <aside className="hidden p-6 border-l-2 w-full max-w-3xs lg:max-w-xl transform transition-transform duration-300 ease-in sm:block ">
-
+            <aside className="hidden p-6 border-l-1 border-gray-900 w-full max-w-3xs lg:max-w-xl transform transition-transform duration-300 ease-in sm:block ">
                 <SidePostCard post={post} />
             </aside>
 

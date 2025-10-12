@@ -13,10 +13,9 @@ function Content(props: IContent) {
     const sanitizedHtml = DOMPurify.sanitize(contentHtml)
 
     return (
-        <div
-            className="text-base text-[#F0F0F0] leading-relaxed "
-            dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-        />
+        <div className='editor-content px-8'>
+            <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }}/>
+        </div>
     )
 }
 

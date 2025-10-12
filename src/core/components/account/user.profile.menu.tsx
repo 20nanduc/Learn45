@@ -21,13 +21,14 @@ import AppSpinner from "../spinner/app_spinner";
 import { IUSer } from "@/core/types/user.type";
 import { useState } from "react";
 import LogoutConfirmModal from "../portels/modals/logout.confirmation";
+import UserSkeleton from "../skeletons/user";
 
 export default function UserProfileMenu() {
     const { data: user, isLoading, error } = useSWR<IUSer>(EndPoints.getUser);
     const [showLogout, setShowLogout] = useState<boolean>(false);
 
 
-    if (isLoading) return <AppSpinner />
+    if (isLoading) return <UserSkeleton />
 
     if (error) return <></>
 
@@ -36,13 +37,13 @@ export default function UserProfileMenu() {
             <>
                 <DropdownMenu>
                     <DropdownMenuTrigger className="flex items-center">
-                        <Avatar>
+                        <Avatar className="w-8 h-8">
                             <AvatarFallback className="bg-primary text-primary-foreground">
-                                <UserIcon />
+                                <UserIcon className="w-4 h-4 text-black" />
                             </AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="mt-2 w-72">
+                    <DropdownMenuContent align="end" className="mt-8 w-72">
                         <DropdownMenuItem className="py-3">
                             <Avatar>
                                 <AvatarFallback className="bg-primary text-primary-foreground">
