@@ -49,7 +49,7 @@ export const useAuth = () => {
       const res = await completeMagicLinkSignin({
         email,
         attemptToken,
-        forcedLogin,
+        forcedLogin: true, // later add session out
         deviceId,
       });
 

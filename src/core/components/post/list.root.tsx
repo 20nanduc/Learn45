@@ -15,7 +15,7 @@ function PostList() {
             ({ children }, ref) => (
                 <div
                     ref={ref}
-                    className="flex flex-col flex-wrap justify-center items-center gap-3 sm:flex-row"
+                    className="flex flex-col flex-wrap justify-center items-stretch gap-3 sm:flex-row"
                 >
                     {children}
                 </div>
@@ -24,7 +24,7 @@ function PostList() {
         Footer: () => {
             if (isValidating && hasMore) {
                 return (
-                    <div className="flex justify-center items-center w-full py-5 text-gray-600">
+                    <div className="flex justify-center mt-2 items-center w-full text-gray-600">
                         <Loader2 className="animate-spin mr-2" size={20} />
                         Loading more...
                     </div>
@@ -33,9 +33,9 @@ function PostList() {
 
             if (!hasMore && posts.length > 0) {
                 return (
-                    <div className="flex flex-col gap-1  justify-center items-center py-5 text-gray-500" >
-                        <p className="text-xs text-center w-full ">Our content creators working for more.</p>
-                        
+                    <div className="flex flex-col gap-1 mt-2 justify-center items-center text-gray-500" >
+                        <p className="text-xs text-center">Our content creators working for more</p>
+
                     </div>
                 );
             }
@@ -56,13 +56,13 @@ function PostList() {
     }
 
     return (
-        <div className="flex flex-col gap-3 mt-3 items-center w-full">
-            <h1 className="text-3xl font-bold">Top Feeds For You</h1>
-            <p className="text-gray-500 mb-5">
-                Discover trending posts across our community.
+        <div className="flex flex-col gap-2 py-8 items-center w-full">
+            <h1 className="text-3xl sm:text-4xl font-bold text-center">Learn 45 Minutes Daily</h1>
+            <p className="max-w-xs text-center">
+                Discover trending topics
             </p>
 
-            <div className="w-full h-[100vh]">
+            <div className="w-full p-8 h-[100vh] scroll-hide">
                 <Virtuoso<IPost>
                     useWindowScroll
                     totalCount={posts.length}
@@ -75,9 +75,7 @@ function PostList() {
                         const post = posts[index];
                         if (!post) return null;
                         return (
-                            <div className="py-2 w-full">
-                                <PostItem key={index} post={post} />
-                            </div>
+                            <PostItem key={index} post={post} />
                         );
                     }}
                 />

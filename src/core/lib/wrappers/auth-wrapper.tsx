@@ -1,4 +1,5 @@
 "use client";
+
 import { FC, useEffect } from "react";
 import useSWR from "swr";
 import * as EndPoints from "@/core/constants/swr-key";
@@ -6,6 +7,7 @@ import AppSpinner from "@/core/components/spinner/app_spinner";
 import { useAppRouter } from "@/core/hooks/use.app.router";
 import { useSearchParams, usePathname } from "next/navigation";
 import { EAuthPageType, isValidURL } from "@/helpers/auth";
+
 
 type TAuthWrapper = {
   pageType?: EAuthPageType;
@@ -81,7 +83,7 @@ export const AuthWrapper: FC<TAuthWrapper> = ({
         return;
       }
     }
-  }, [isLoading, currentUser, pageType, pathname, nextPath]);
+  }, [isLoading, currentUser, isUserOnboard, router, pageType, pathname, nextPath]);
 
 
   if (isLoading && !currentUser?.id) {

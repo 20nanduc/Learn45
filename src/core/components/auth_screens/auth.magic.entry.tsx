@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { EAuthHeader, EAuthPageType } from "@/helpers/auth";
 import { Loader2Icon, LogInIcon, MailCheckIcon } from "lucide-react";
 
 interface IAuthMagicLinkEntryProps {
@@ -8,11 +9,12 @@ interface IAuthMagicLinkEntryProps {
   isLoading: boolean;
   error: string;
   showLogoutWarning: boolean;
+  setAuthStep: React.Dispatch<React.SetStateAction<EAuthHeader>>;
   signInWithMagicLink: (forcedLogin: boolean) => void;
 }
 
 const AuthMagicLinkEntry = (props: IAuthMagicLinkEntryProps) => {
-  const { showLogoutWarning, error, isLoading, signInWithMagicLink } = props;
+  const { showLogoutWarning, error, isLoading, setAuthStep, signInWithMagicLink } = props;
 
 
   const buttonText = showLogoutWarning
@@ -20,27 +22,27 @@ const AuthMagicLinkEntry = (props: IAuthMagicLinkEntryProps) => {
     : "I've Verified - Continue";
 
   const paragraphContent = showLogoutWarning ? (
-    <p className="text-xs text-center text-muted-foreground max-w-md">
+    <p className="text-center text-muted-foreground">
       <span className="font-semibold text-red-500">
         Do you want to logout and continue?
       </span>{" "}
       Found session already active.
     </p>
   ) : (
-    <p className="text-xs text-center text-muted-foreground max-w-md">
+    <p className=" text-sm text-center text-muted-foreground">
       <span className="font-semibold text-foreground">
-        Once you've verified your email,
+        Once you&apos;ve verified your email,
       </span>{" "}
       click the button below to continue.
     </p>
   );
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 p-4">
+    <div className="flex flex-col justify-center items-center gap-4">
       <MailCheckIcon
         size={90}
         className="text-green-500 mb-2"
-        aria-hidden="true"
+        aria-hidden="true"  
       />
 
       {paragraphContent}
@@ -67,11 +69,10 @@ const AuthMagicLinkEntry = (props: IAuthMagicLinkEntryProps) => {
       </Button>
       {error && <p className="text-xs text-red-600 mt-1 ml-1">{error}</p>}
 
-      {/* Optional: Add a button to switch back to the main login method if the user is stuck */}
       <Button
         variant="link"
-        className={"text-xs text-muted-foreground"}
-        onClick={() => null}
+        className={"font-normal text-blue-500 underline"}
+        onClick={() => setAuthStep(EAuthHeader.NOT_STARTED)}
       >
         Try anothor Email
       </Button>

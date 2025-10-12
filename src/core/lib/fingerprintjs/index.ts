@@ -1,5 +1,4 @@
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
-import { describe } from "node:test";
 
 /*
  * @returns {Promise<string>} A promise that give visitor id.

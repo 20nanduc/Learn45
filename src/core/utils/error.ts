@@ -6,23 +6,43 @@
 export function getErrorMessage(err: unknown, fallback = "Something went wrong"): string {
   if (!err) return fallback;
 
-  // If it's a JS Error object
-  if (err instanceof Error) return err.message;
+  // Case 1: Native JS Error
+  if (err instanceof Error) {
+    return err.message || fallback;
+  }
 
-  // If it's a string
-  if (typeof err === "string") return err;
+  // Case 2: Plain string
+  if (typeof err === "string") {
+    return err;
+  }
 
-  // If it's an object (like Axios or fetch errors)
+  // Case 3: Object with message or error key
   if (typeof err === "object" && err !== null) {
-    // Check for common API error patterns
-    if ("message" in err && typeof (err as any).message === "string") {
-      return (err as any).message;
+    // Narrow type to a Record<string, unknown> safely
+    const e = err as Record<string, unknown>;
+
+    if (typeof e.message === "string") {
+      return e.message;
     }
-    if ("error" in err && typeof (err as any).error === "string") {
-      return (err as any).error;
+
+    if (typeof e.error === "string") {
+      return e.error;
+    }
+
+    // Handle API error pattern: err.response.data.message
+    if (
+      typeof e.response === "object" &&
+      e.response !== null &&
+      typeof (e.response as Record<string, unknown>).data === "object"
+    ) {
+      const data = (e.response as Record<string, unknown>).data as Record<string, unknown>;
+      if (typeof data.message === "string") {
+        return data.message;
+      }
     }
   }
 
-  // Fallback
   return fallback;
 }
+
+

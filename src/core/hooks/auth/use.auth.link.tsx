@@ -3,7 +3,7 @@
 import { getCachedUserLoginAttempt } from "@/core/store/local.store";
 import { isValidEmail } from "@/core/utils/auth";
 import { getErrorMessage } from "@/core/utils/error";
-import React, { useEffect, useState, useCallback } from "react";
+import  { useEffect, useState, useCallback } from "react";
 import { isValidMagicLink, registerUser } from "../../lib/firebase/firebase.auth";
 import { markUserEmailVerified } from "@/core/services/server-actions/auth/magic.signin.service";
 import { useWindowUrl } from "../url/use.window.url.hook";

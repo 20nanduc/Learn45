@@ -15,7 +15,7 @@ function AuthLinkOpen() {
     content = <AuthLinkVerified />;
   } else {
     content = (
-      <p className="text-base font-normal">
+      <p>
         Verifying...
       </p>
     );

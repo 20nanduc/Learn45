@@ -86,8 +86,8 @@ export async function markUserEmailVerified({ idToken, attemptToken }: IMarkUser
 export interface ICompleteMagicLinkSignin {
   email: string;
   attemptToken: string;
-  forcedLogin: boolean  // clear old active session.
-  deviceId: string   // later pass it for extra security.
+  forcedLogin: boolean 
+  deviceId: string 
 }
 
 
@@ -99,7 +99,7 @@ export async function completeMagicLinkSignin({ email, attemptToken, forcedLogin
         "Content-Type": "application/json",
         "x-client-platform": `${Constant.X_CLIENT_PLATFORM}`,
       },
-      body: JSON.stringify({ email, attempt_token: attemptToken, force: forcedLogin }),
+      body: JSON.stringify({ email, attempt_token: attemptToken, force: forcedLogin, deviceId }),
     });
 
     console.log("complete sign in res", res);
@@ -114,7 +114,7 @@ export async function completeMagicLinkSignin({ email, attemptToken, forcedLogin
     }
     await saveCookieToBrowser(res);
     return { success: true, data };
-    
+
   } catch (err: unknown) {
     return { success: false, error: getErrorMessage(err), status: 500 }
   }

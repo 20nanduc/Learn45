@@ -1,7 +1,7 @@
 "use client"
 
 import { IPostView } from "@/core/types/post.type"
-import { Calendar1Icon, EyeIcon, GraduationCapIcon, WaypointsIcon } from "lucide-react"
+import { Calendar1Icon, GraduationCapIcon, WaypointsIcon } from "lucide-react"
 import Image from "next/image"
 
 

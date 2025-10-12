@@ -1,11 +1,12 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { IPostMaterialView } from "@/core/types/post.type";
+import { IPostLessonView } from "@/core/types/post.type";
 import { WaypointsIcon } from "lucide-react";
+import Link from "next/link";
 
 interface IContentItem {
-    material: IPostMaterialView
+    material: IPostLessonView
 }
 
 
@@ -14,23 +15,25 @@ function ContentItem(props: IContentItem) {
     const { material } = props;
 
     return (
-        <Card
-            className="w-full p-4 flex mb-3 flex-col gap-2 rounded-lg shadow-md md:flex-row md:items-center md:justify-between transition-transform duration-200 hover:scale-[1.01]"
-        >
-            <div
-                className="flex flex-row items-center gap-3 min-w-0 flex-1 cursor-pointer"
+        <Link href={`/lesson/${material.slug}`} prefetch={true}>
+            <Card
+                className="w-full p-4 flex mb-3 flex-col gap-2 rounded-lg shadow-md md:flex-row md:items-center md:justify-between transition-transform duration-200 hover:scale-[1.01]"
             >
-                <WaypointsIcon className="w-5 h-5 text-blue-500 flex-shrink-0" />
-                <h6 className="flex-1 text-sm font-semibold break-words">
-                    {material?.title}
-                </h6>
-            </div>
+                <div
+                    className="flex flex-row items-center gap-3 min-w-0 flex-1 cursor-pointer"
+                >
+                    <WaypointsIcon className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                    <h6 className="flex-1 text-sm font-semibold break-words">
+                        {material?.title}
+                    </h6>
+                </div>
 
-            <div className="flex flex-row items-center justify-end gap-3 mt-2 md:mt-0 flex-shrink-0">
-                <p className="text-xs text-orange-500"><span className="font-bold">{material?.duration}</span>{" "}min</p>
-            </div>
+                <div className="flex flex-row items-center justify-end gap-3 mt-2 md:mt-0 flex-shrink-0">
+                    <p className="text-xs text-orange-500"><span className="font-bold">{material?.duration}</span>{" "}min</p>
+                </div>
 
-        </Card>
+            </Card>
+        </Link>
     )
 }
 

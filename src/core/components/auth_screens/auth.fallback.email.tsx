@@ -18,11 +18,11 @@ function AuthFallbackEmail(props: IAuthFallbackEmail) {
   const { userEmail, setUserEmail, isVerifying, error, registerUserWithFirebase } = props;
 
   return <div
-    className="flex flex-col justify-center items-center max-w-xl"
+    className="flex flex-col gap-5 justify-center items-center max-w-xs"
   >
+    <h1 className="text-3xl sm:text-4xl font-bold text-center sm:text-start">One final step to complete</h1>
     <div className="space-y-4 w-full">
-      <h1 className="text-xl">Almost there!, One more Step</h1>
-      <p className="text-base text-muted-foreground">
+      <p className="text-xs text-center sm:text-start text-muted-foreground ">
         Re-type Your email once again here.
       </p>
       <div className="relative">

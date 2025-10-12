@@ -19,10 +19,10 @@ const AuthForm = (props: IAuthFormProps) => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center max-w-xl"
+      className="flex flex-col justify-center items-center"
     >
       <div className="space-y-4 w-full">
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-center text-muted-foreground">
           Enter your email address to receive a sign-in link.
         </p>
         <div className="relative">
@@ -53,7 +53,7 @@ const AuthForm = (props: IAuthFormProps) => {
             <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
           ) : (
             <>
-              Login
+              Send Login Link
               <SendIcon className="ml-2 w-4 h-4" />
             </>
           )}

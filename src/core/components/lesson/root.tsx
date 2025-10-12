@@ -1,18 +1,22 @@
 "use client";
 
-import Sidebar from "@/core/components/lesson/controller/Sidebar";
+import useLessonHook from "@/core/hooks/lesson/use.lesson.hook";
+import AppSpinner from "../spinner/app_spinner";
+import RootContent from "./content/root.content";
 
 function LessonRoot() {
-    return (
-        <div className="h-[calc(100vh-3rem)] flex overflow-hidden">
-            <main className="flex-1 bg-amber-500 transform transition-transform duration-300 ease-in flex flex-col">
-                <p>Main content area</p>
-            </main>
-            <aside className="hidden p-6 border-l-2 w-full max-w-3xs lg:max-w-xl transform transition-transform duration-300 ease-in sm:block ">
-                <Sidebar />
-            </aside>
-        </div>
-    )
+    const { lesson, isLoading, error } = useLessonHook()
+
+    if (isLoading) return <AppSpinner />
+
+    if (error) return <p>Lesson Not Found!</p>
+
+    if (lesson) {
+        return (
+            <RootContent lesson={lesson} />
+        )
+    }
+    return <></>
 }
 
 export default LessonRoot

@@ -3,7 +3,6 @@
 const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
-  output: "standalone",
 
   async headers() {
     return [
@@ -25,7 +24,7 @@ const nextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ["lucide-react", "clsx", "tailwind-merge"],
+    optimizePackageImports: ["lucide-react", "clsx", "tailwind-merge", "dompurify"],
   },
 
   async redirects() {

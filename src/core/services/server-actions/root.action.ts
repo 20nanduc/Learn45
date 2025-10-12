@@ -1,9 +1,6 @@
 "use server";
 
-import { COOKIE_SESSION_KEY } from "@/core/constants";
 import { getBrowserCookie } from "@/core/utils/cookie";
-
-const X_CLIENT_PLATFORM = "WEB";
 
 export const globalFetcher = async (url: string) => {
 

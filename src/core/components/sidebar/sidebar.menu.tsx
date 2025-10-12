@@ -8,14 +8,14 @@ interface SidebarItemProps {
   name: string;
   icon: React.ElementType;
   pathname: string;
-  onClick?: () => void;
+  // onClick?: () => void;
 }
 
 export default function SidebarItem({
   name,
   icon: Icon,
   pathname,
-  onClick,
+  // onClick,
 }: SidebarItemProps) {
 
   const currentPath = usePathname();
@@ -24,7 +24,7 @@ export default function SidebarItem({
   return (
     <Link
       href={pathname}
-      onClick={onClick}
+      // onClick={onClick}
       className={clsx(
         "flex flex-col items-center justify-center gap-1 p-3 rounded-lg transition-colors",
         active

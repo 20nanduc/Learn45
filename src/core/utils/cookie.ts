@@ -29,7 +29,22 @@ export const saveCookieToBrowser = async (res: Response) => {
         });
     }
     return true;
-}   
+}
+
+
+// export const clearCookie = async () => {
+//     const cookieStore = await cookies();
+//     cookieStore.set({
+//         name: COOKIE_SESSION_KEY,
+//         value: "",
+//         expires: new Date(0),
+//         path: "/",           
+//         httpOnly: true,
+//         secure: false,
+//         sameSite: "lax",
+//     });
+
+// }
 
 
 

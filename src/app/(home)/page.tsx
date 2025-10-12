@@ -1,15 +1,16 @@
-// fetch user and pass it to auth wrapper will be top level flow controller decides which to render inside
-
 import AuthRoot from "@/core/components/auth_screens/auth.root";
 import { AuthWrapper } from "@/core/lib/wrappers/auth-wrapper";
 import { EAuthPageType } from "@/helpers/auth";
+import { Suspense } from "react";
+
+export const dynamic = 'force-dynamic';
 
 export default function HomePage() {
   return (
-    <div>
+    <Suspense fallback={<div className="h-screen m-auto">Loading...</div>}>
       <AuthWrapper pageType={EAuthPageType.PUBLIC}>
         <AuthRoot />
       </AuthWrapper>
-    </div>
+    </Suspense>
   );
 }
