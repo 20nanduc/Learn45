@@ -26,7 +26,7 @@ function PostAuthor(props: IPostAuthor) {
                 </AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1 justify-center items-center sm:items-start ">
-                <h5 className="max-w-xs uppercase line-clamp-2">{post.tutor_name}</h5>
+                <h5 className="max-w-xs text-white uppercase line-clamp-2">{post.tutor_name}</h5>
                 <p className="m-0 max-w-xs text-muted-foreground line-clamp-2">
                     {post?.tutor_profession}
                 </p>

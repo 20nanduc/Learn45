@@ -7,11 +7,11 @@ interface IFormHeader {
 
 function FormHeader(props: IFormHeader) {
   return (
-    <div className="flex flex-col justify-start items-start gap-1">
-      <h1 className="text-2xl sm:text-4xl font-bold ">
+    <div className="flex flex-col items-center sm:items-start mx-w-xs">
+      <h1 className="text-3xl sm:text-4xl text-center sm:text-start font-bold">
         {props.title}
       </h1>
-      <p className="text-2xl  text-muted-foreground">
+      <p className="text-center sm:text-start">
         {props.subTitle}
       </p>
     </div>

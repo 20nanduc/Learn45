@@ -3,6 +3,7 @@
 import { IPostView } from "@/core/types/post.type"
 import { Calendar1Icon, GraduationCapIcon, WaypointsIcon } from "lucide-react"
 import Image from "next/image"
+import RelativeTime from "../../relative-time"
 
 
 interface IPostHeader {
@@ -27,9 +28,9 @@ function PostHeader(props: IPostHeader) {
                 <h1 className="text-2xl font-extrabold sm:text-4xl tracking-wider">
                     {post?.post_title}
                 </h1>
-                <h5 className="text-muted-foreground">
+                <p className="m-0">
                     {post?.post_description}
-                </h5>
+                </p>
                 <div className="flex flex-row flex-wrap items-center gap-4 whitespace-nowrap mt-2">
                     <div className="flex items-center gap-1">
                         <WaypointsIcon className="w-4 h-4 text-chart-3" />
@@ -47,7 +48,7 @@ function PostHeader(props: IPostHeader) {
                     <div className="flex items-center gap-1">
                         <Calendar1Icon className="w-3 h-3 text-chart-3" />
                         <span className="text-xs text-chart-3">
-                            {post?.post_published_at}
+                           <RelativeTime date= {post?.post_published_at}/>
                         </span>
                     </div>
                 </div>

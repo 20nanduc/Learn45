@@ -51,16 +51,16 @@ export default function UserProfileMenu() {
                                 </AvatarFallback>
                             </Avatar>
                             <div className="ml-1 flex flex-col">
-                                <p className="text-sm font-medium">{user?.name}</p>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-sm font-medium m-0">{user?.name}</p>
+                                <p className="text-xs text-muted-foreground m-0">
                                     @{user?.slug}
                                 </p>
                             </div>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        {/* <DropdownMenuItem>
                             <User className="mr-1" /> Invite people
-                        </DropdownMenuItem>
+                        </DropdownMenuItem> */}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => setShowLogout(true)}>
                             <LogOut className="mr-1" /> Sign out

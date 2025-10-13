@@ -2,9 +2,10 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { IPost } from "@/core/types/post.type"
-import { Clock3Icon, ClockArrowDownIcon, GraduationCapIcon, WaypointsIcon } from "lucide-react"
+import { ChevronRight, Clock3Icon, GraduationCapIcon, WaypointsIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link";
+import RelativeTime from "../relative-time";
 
 
 interface IPostItem {
@@ -58,7 +59,7 @@ function PostItem(props: IPostItem) {
 
                                 <div className="flex gap-1 min-w-0">
                                     <Clock3Icon className="w-4 h-4 text-chart-3" />
-                                    <span className="text-xs text-chart-3 whitespace-nowrap">{post?.published_at}</span>
+                                    <span className="text-xs text-chart-3 whitespace-nowrap">Published on{" "}<RelativeTime date={post?.published_at} /></span>
                                 </div>
                             </div>
 
@@ -69,7 +70,7 @@ function PostItem(props: IPostItem) {
                                     className="flex items-center justify-center w-full"
                                 >
                                     <span className="text-sm font-bold text-center">{post?.duration}m Learn</span>
-                                    <ClockArrowDownIcon className="w-4 h-4 font-bold" />
+                                    <ChevronRight className="w-4 h-4 font-bold" />
                                 </Button>
                             </div>
 

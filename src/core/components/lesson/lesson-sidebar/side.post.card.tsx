@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import LessonList from "./lesson.list";
 import { IPostView } from "@/core/types/post.type";
+import RelativeTime from "../../relative-time";
 
 
 interface IPostSideCard {
@@ -40,7 +41,7 @@ export default function PostSideCard(props: IPostSideCard) {
                                 {post?.tutor_name}
                             </h6>
                             <span className="text-xs text-muted-foreground font-medium">
-                                Published <span className="text-indigo-500 font-medium">{post?.post_published_at}</span>
+                                Published on{" "}<span className="font-medium"><RelativeTime date={post?.post_published_at} /></span>
                             </span>
                         </div>
                     </div>

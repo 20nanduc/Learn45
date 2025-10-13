@@ -2,8 +2,14 @@
 
 import { ReactNode, FC } from "react";
 import { SWRConfig } from "swr";
-import { AppProgressProvider as ProgressProvider } from "@bprogress/next";
 import { fetcher } from "@/core/services/global.get";
+import dynamic from "next/dynamic";
+
+
+const ProgressProvider = dynamic(
+  () => import("@bprogress/next").then(mod => mod.AppProgressProvider),
+  { ssr: false }
+);
 
 export interface IAppProvider {
   children: ReactNode;
@@ -13,8 +19,8 @@ export const AppProvider: FC<IAppProvider> = (props) => {
   const { children } = props;
   return (
     <ProgressProvider
-      height="4px"
-      color="rgb(var(--color-primary-100))"
+      height="2px"
+      color="#3b82f6"
       options={{ showSpinner: false }}
       shallowRouting
     >
