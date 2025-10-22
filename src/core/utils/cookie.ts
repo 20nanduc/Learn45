@@ -21,10 +21,10 @@ export const saveCookieToBrowser = async (res: Response) => {
         console.log("cookie name", name);
         cookieStore.set(name, value, {
             path: '/',
-            httpOnly: raw.includes('HttpOnly'),
-            domain: "https://www.app.learn45.com",
-            secure: raw.includes('Secure'),
-            sameSite: raw.includes('SameSite=Lax') ? 'lax' : (raw.includes('SameSite=Strict') ? 'strict' : 'none'),
+            httpOnly: true,
+            domain: 'app.learn45.com',
+            secure: true,
+            sameSite: 'lax',
             maxAge: getMaxAgeFromRaw(raw),
         });
     }
