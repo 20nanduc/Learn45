@@ -1,6 +1,6 @@
 # Learn45 — One Habbit, Endless Growth 
 
-**[Learn45.com](https://www.learn45.com)** — a personal learning companion built to help you learn anything for **just 45 minutes a day**, every day.
+**[Learn45.com](https://learn45.com/)** — a personal learning companion built to help you learn anything for **just 45 minutes a day**, every day.
 
 ⚡ Why 45 minutes? — chosen for a reason. It’s the global learning rhythm that maximizes focus, mirrors classroom flow, and builds lasting consistency.
 
@@ -47,10 +47,10 @@ I’m currently exploring how **system design**, **learning psychology**, and **
 ## 🌍 Let’s Build Together
 
 If you’re a **founder**, **engineer**, or **designer** who believes small habits change lives —  
-**Reach me at [linkedin](https://www.linkedin.com/in/nandu-c-14707235a)]** — I’d love to jam on product thinking, marketing, architecture, or growth loops.
+**Reach me at [linkedin](https://www.linkedin.com/in/nandu-c-14707235a)** — I’d love to jam on product thinking, marketing, architecture, or growth loops.
 drop a message. Let’s brainstorm.
 
 > *Great products are born when curiosity meets discipline.*
 ---
 
-### ✨ [Learn45.com](https://www.learn45.com) — One Habit. Endless Growth
+### ✨ [Learn45.com](https://learn45.com/) — One Habit. Endless Growth
