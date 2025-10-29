@@ -1,6 +1,6 @@
 # Learn45 — One Habbit, Endless Growth
 
-**[Learn45.com](https://www.learn45.com)** — a personal learning companion built to help you learn anything for **just 45 minutes a day**, every day.
+**[Learn45.com](https://learn45.com)** — a personal learning companion built to help you learn anything for **just 45 minutes a day**, every day.
 
 ⚡ Why 45 minutes? — chosen for a reason. It’s the global learning rhythm that maximizes focus, mirrors classroom flow, and builds lasting consistency.
 
@@ -53,4 +53,4 @@ drop a message. Let’s brainstorm.
 > *Great products are born when curiosity meets discipline.*
 ---
 
-### ✨ [Learn45.com](https://www.learn45.com) — One Habit. Endless Growth
+### ✨ [Learn45.com](https://learn45.com) — One Habit. Endless Growth
