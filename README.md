@@ -34,14 +34,14 @@ It’s also where I experiment with ideas that could evolve into startup-scale p
 
 ---
 
-## 👨‍💻 About Me
+### 👋 Hi, I’m **Nandu C**
 
-Hi, I’m **Nandu C** — a **Software Engineer** passionate about:
-- clean, scalable systems  
-- product architecture  
-- early-stage startup problem solving  
+**Software Engineer** passionate about:
+- 🧩 Clean, scalable systems  
+- 🏗️ Product architecture  
+- 🚀 Early-stage startup problem-solving  
 
-I’m currently exploring how **system design**, **learning psychology**, and **user experience** blend into meaningful software. I have prior exeperience in tech startup and currently working in a premier R&D organization under MeitY, Government of India,
+- I’m currently exploring how **system design**, **learning psychology**, and **user experience** blend into meaningful software. I have prior exeperience in tech startup and currently working in a premier R&D organization under MeitY, Government of India.
 ---
 
 ## 🌍 Let’s Build Together
